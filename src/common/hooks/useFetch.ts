@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 
 export const useFetch = (service: Promise<AxiosResponse<any, any>>) => {
-    const [responseData, setResponseData] = useState([]);
+    const [responseData, setResponseData] = useState<any>([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(()=> {    

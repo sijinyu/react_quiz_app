@@ -1,6 +1,7 @@
 import Quizing from "./Quizing";
+import Start from "./Start";
 import Result from "./Result";
-import Start from "./Result";
+
 
 const quiz = {
     Start,

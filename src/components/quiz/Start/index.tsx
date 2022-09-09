@@ -2,7 +2,7 @@ import React from 'react';
 import { Stack } from '@mui/material';
 import { useNavigate } from 'react-router-dom'
 import SButton from '../../common/Button';
-import Header from '../../../components/common/Header';
+import Header from '../../common/Header';
 
 
 function Start() {

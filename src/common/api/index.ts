@@ -1,6 +1,6 @@
 
 import axios from "axios";
-import { constant } from "../../constants";
+import { constant } from "@/constants";
 
 const baseURL = constant.getBaseUrl();
 

@@ -10,11 +10,11 @@ const StyledContainer = styled(Container)(({ theme }) => ({
 	justifyContent:'center'
 }));
 
-function SContainer <P extends ContainerProps>({
+function SContainer({
 	children,
 	...props
 }: ContainerProps) {
-	return <StyledContainer {...(props as P)}>{children}</StyledContainer>;
+	return <StyledContainer {...(props)}>{children}</StyledContainer>;
 }
 
 

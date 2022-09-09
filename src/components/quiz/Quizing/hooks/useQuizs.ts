@@ -1,11 +1,10 @@
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IQuizData , IQuizList} from '../../types/index';
-import { useEffect, useRef, useState } from 'react';
-import QuizDataService from '../service/quizData.service';
-import helper from '../../../../common/utils/helper';
-import localStorage from '../../../../common/utils/localStorage';
+import helper from '@/common/utils/helper';
+import localStorage from '@/common/utils/localStorage';
 
-export const useQuizs = () => {
+export const useQuizs = (quizs:[]) => {
   let currentSelectQuizValue = useRef('');
   let currentSelectQuizAnswer= useRef('');
   let startTime = useRef(0);
@@ -40,6 +39,7 @@ export const useQuizs = () => {
   }
 
   const handleQuizData = (quizs:[]) => {
+    
     const quizAndAnswer = quizs.reduce<IQuizList[]>((arr,quiz:IQuizData,index)=>  {
       arr.push({
         id : index,
@@ -84,15 +84,8 @@ export const useQuizs = () => {
 
   useEffect(()=> {
     QuizStartTime();
-    QuizDataService.getAll()
-    
-    .then((res)=> {
-      handleQuizData(res?.results)
-    })
-    .catch((rej)=> {
-      console.log('useQuiz QuizDataService GetAll Error :', rej)
-    })
-  },[])
+    handleQuizData(quizs)
+  },[quizs])
 
 	return {
     currentQuiz,

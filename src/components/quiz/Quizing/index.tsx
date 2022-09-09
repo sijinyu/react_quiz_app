@@ -1,18 +1,23 @@
 import React from 'react';
 import { Box, Stack, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
+import { useFetch } from '@/common/hooks/useFetch';
+import Header from '@/components/common/Header';
+import SButton from '@/components/common/Button'
+import Hidden from '@/components/common/Hidden';
+import AsyncContainer from '@/components/common/AsyncContainer';
+import QuizDataService from './service/quizData.service';
 import { useQuizs } from './hooks/useQuizs';
-import Header from '../../common/Header';
-import SButton from '../../common/Button'
-import Hidden from '../../common/Hidden';
 
 
-function Quizing() {
 
-    const {currentQuiz  ,handleNextClick, handleQuizClick, handleReQuizClick, quizButtonDisabled, inVisibleNextButton,  solveCount, totalCount , resultMessage} = useQuizs()
+
+export default function Quizing() {
+    const { responseData, isLoading } = useFetch(QuizDataService.getAll)
+    const {currentQuiz  ,handleNextClick, handleQuizClick, handleReQuizClick, quizButtonDisabled, inVisibleNextButton,  solveCount, totalCount , resultMessage} = useQuizs(responseData)
     
 	return (
-		<Stack minWidth="100%">
+		<AsyncContainer isLoading={isLoading} minWidth="100%">
             <Header><Typography variant='h3'> {`${solveCount}/${totalCount}`}</Typography></Header>
             <Box mb={4}>
                 <Typography variant='h3' textAlign="center" >{currentQuiz?.question}</Typography>
@@ -37,8 +42,7 @@ function Quizing() {
                     </Stack>
                 </Hidden>
             </Stack>
-		</Stack>
+		</AsyncContainer>
 	);
 }
 
-export default Quizing;

@@ -1,12 +1,12 @@
 import React  from 'react';
 import {  Box, Stack, Typography } from '@mui/material';
 import { useResult } from './hooks/useResult';
-import SButton from '../../common/Button';
+import SButton from '@/components/common/Button';
 import { useNavigate } from 'react-router-dom';
 import Chart from './Chart';
 
 
-function Result() {
+export default function Result() {
     const { score , time } = useResult()
     const navigate = useNavigate();
     
@@ -25,4 +25,3 @@ function Result() {
 	)
 }
 
-export default Result;

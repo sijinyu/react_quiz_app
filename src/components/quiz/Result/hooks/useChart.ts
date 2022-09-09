@@ -1,5 +1,5 @@
 import React, { useState , useEffect } from 'react'
-import localStorage from '../../../../common/utils/localStorage';
+import localStorage from '@/common/utils/localStorage';
 import { IChartData, IQuizResult } from '../../types/index';
 
 
